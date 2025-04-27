@@ -14,9 +14,22 @@ pipeline {
         }
       stage('checkout from SCM'){
         steps{
-          git branch: 'main' , credentialsId: 'github', url: 
+          git branch: 'main' , credentialsId: 'github', url: https:'//github.com/Koushalya-gif/register-app/tree/main'
         }
       }
+
+        stage('Build Application'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+
+        stage('Test Appliaction'){
+            steps{
+                sh "mvn test"
+            }
+        }
+        
     }
 }
 
